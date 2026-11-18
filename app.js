@@ -1,4 +1,4 @@
-﻿'use strict';
+'use strict';
 
 const storageKey = 'wehart-natal-cart-v1';
 const byId = new Map(PRODUCTS.map(product => [product.id, product]));
@@ -12,6 +12,7 @@ const detail = find('detail-view');
 const checkout = find('checkout');
 const closeCart = find('close-cart');
 const openCart = find('open-cart');
+const floatingCart = find('floating-cart');
 
 function parseCart(value) {
   try {
@@ -71,7 +72,11 @@ function updateCart() {
   const missing = Math.max(0, PRICING.minimum - count);
   const price = quote(count);
   find('cart-count').textContent = count;
-  openCart.setAttribute('aria-label', 'Carrinho, ' + quantity(count) + ' selecionado' + (count === 1 ? '' : 's'));
+  const cartLabel = 'Carrinho, ' + quantity(count) + ' selecionado' + (count === 1 ? '' : 's');
+  openCart.setAttribute('aria-label', cartLabel);
+  floatingCart.setAttribute('aria-label', 'Abrir ' + cartLabel.toLowerCase());
+  find('floating-count').textContent = count;
+  floatingCart.hidden = count === 0;
   find('drawer-count').textContent = quantity(count) + (count === 1 ? ' selecionado' : ' selecionados');
 
   for (const button of grid.querySelectorAll('[data-add]')) {
@@ -222,6 +227,7 @@ detail.addEventListener('click', event => {
 });
 
 openCart.addEventListener('click', showCart);
+floatingCart.addEventListener('click', showCart);
 closeCart.addEventListener('click', () => cart.close());
 cart.addEventListener('click', event => {
   if (event.target === cart && event.clientX < cart.getBoundingClientRect().left) cart.close();
@@ -248,11 +254,15 @@ checkout.addEventListener('click', () => {
   const products = PRODUCTS.filter(product => selected.has(product.id));
   const price = quote(products.length);
   if (!price) return;
-  const list = products.map((product, index) => (index + 1) + '. ' + product.title);
+  const selection = products.length === PRODUCTS.length
+    ? ['Olá! Quero o pacote completo dos STLs da coleção de Natal da WehART modelagem 3D.']
+    : [
+      'Olá! Escolhi estes modelos 3D de Natal no catálogo WehART modelagem 3D:',
+      '',
+      ...products.map((product, index) => (index + 1) + '. ' + product.title),
+    ];
   const message = [
-    'Olá! Escolhi estes modelos 3D de Natal no catálogo WehART modelagem 3D:',
-    '',
-    ...list,
+    ...selection,
     '',
     'Quantidade: ' + quantity(products.length),
     'Pacote: ' + price.label,
