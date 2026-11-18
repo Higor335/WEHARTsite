@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Escolha entre 13 modelos natalinos da WehART modelagem 3D. Monte seu pacote de arquivos digitais STL e finalize pelo WhatsApp.">
+  <meta name="theme-color" content="#14532D">
+  <title>WehART modelagem 3D | Coleção de Natal — Arquivos STL</title>
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./products.js" defer></script>
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#conteudo">Ir para o conteúdo</a>
+  <header class="top">
+    <div class="shell top-inner">
+      <a class="brand" href="#catalogo" aria-label="WehART modelagem 3D, catálogo">
+        <strong>WehART</strong><span>modelagem 3D</span>
+      </a>
+      <button id="open-cart" class="button outline cart-trigger" type="button" aria-haspopup="dialog">
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 8h14l1 13H4L5 8Z M9 9V6a3 3 0 0 1 6 0v3"/></svg>
+        Carrinho <span id="cart-count" class="count">0</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="conteudo" class="shell" tabindex="-1">
+    <div id="catalog-view">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <h1 id="hero-title" tabindex="-1">Coleção de Natal <span>— Arquivos STL</span></h1>
+          <p>Presépios, enfeites e peças de mesa autorais para imprimir em 3D. Escolha seus favoritos para compor a decoração de Natal.</p>
+          <p class="digital">Produto digital · Entrega em arquivo STL, sem envio de peça física.</p>
+          <a class="button primary" href="#modelos">Explorar modelos <span aria-hidden="true">↓</span></a>
+        </div>
+        <figure class="hero-photo"><img src="./assets/01/foto-1.webp" alt="Árvore de Natal com textura em crochê em uma composição natalina" fetchpriority="high"></figure>
+      </section>
+      <section class="offers" aria-label="Pacotes de modelos">
+        <article class="offer custom">
+          <h2>Pacote Personalizado</h2>
+          <p class="offer-price" id="custom-price"></p>
+          <p id="custom-terms"></p>
+          <p>Combine seus enfeites e presépios favoritos.</p>
+        </article>
+        <article class="offer full">
+          <h2>Coleção Completa</h2>
+          <p class="offer-price" id="full-price"></p>
+          <p id="full-terms"></p>
+          <button class="button light" id="select-all" type="button">Selecionar Coleção Completa</button>
+        </article>
+      </section>
+      <section id="modelos" class="catalog" aria-labelledby="models-title">
+        <div class="section-heading">
+          <h2 id="models-title" tabindex="-1">Modelos da coleção</h2>
+          <p id="model-count"></p>
+        </div>
+        <div id="product-grid" class="grid"></div>
+      </section>
+    </div>
+    <section id="detail-view" hidden></section>
+    <noscript><p>Ative o JavaScript para explorar os produtos e montar seu pacote.</p></noscript>
+  </main>
+
+  <footer class="footer"><div class="shell">WehART modelagem 3D <span>Arquivos digitais para impressão 3D</span></div></footer>
+  <div id="announcement" class="visually-hidden" role="status"></div>
+  <dialog id="cart" aria-labelledby="cart-title">
+    <div class="drawer-head">
+      <div><h2 id="cart-title">Seu carrinho</h2><p id="drawer-count"></p></div>
+      <button class="button outline close" id="close-cart" type="button" aria-label="Fechar carrinho" autofocus>×</button>
+    </div>
+    <div class="drawer-body">
+      <p id="cart-progress-text" aria-live="polite"></p>
+      <progress id="cart-progress" aria-label="Progresso para atingir o mínimo"></progress>
+      <ul id="cart-items"></ul>
+    </div>
+    <div class="drawer-foot">
+      <p id="cart-package"></p>
+      <div class="total"><span>Total</span><strong id="cart-total"></strong></div>
+      <p id="cart-price-note" hidden></p>
+      <button id="checkout" class="button primary" type="button" disabled>Finalizar Pedido no WhatsApp</button>
+    </div>
+  </dialog>
+</body>
+</html>
