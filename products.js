@@ -1,7 +1,7 @@
 const PRICING = Object.freeze({
-  minimum: 3,
+  minimum: 5,
   reference: 1290,
-  base: 2490,
+  base: 3490,
   additional: 500,
   collection: 5990,
 });
