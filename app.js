@@ -106,7 +106,7 @@ function updateCart() {
   find('cart-items').innerHTML = PRODUCTS.filter(product => selected.has(product.id)).map(product => `
     <li>
       <img src="${product.media}/capa.webp" alt="" width="52" height="52">
-      <div><p>${product.title}</p><small>Arquivo digital STL</small></div>
+      <div><p>${product.title}</p><small>Arquivo digital ${product.format ?? 'STL'}</small></div>
       <button class="button outline close" type="button" data-remove="${product.id}" aria-label="Remover ${product.title}">×</button>
     </li>`).join('');
 
@@ -114,7 +114,7 @@ function updateCart() {
   find('cart-total').textContent = price ? money(price.total) : '—';
   const note = find('cart-price-note');
   note.hidden = !price?.capped;
-  note.textContent = price?.capped ? 'Seu pacote atingiu o preço da coleção. Você pode selecionar os 13 modelos pelo mesmo valor.' : '';
+  note.textContent = price?.capped ? 'Seu pacote atingiu o preço da coleção. Você pode selecionar os ' + quantity(PRODUCTS.length) + ' pelo mesmo valor.' : '';
   checkout.disabled = !price;
 }
 
@@ -158,7 +158,7 @@ function renderDetail(product) {
         <p class="eyebrow">${product.type}</p>
         <h1 id="detail-title" tabindex="-1">${product.title}</h1>
         <p class="description">${product.description}</p>
-        <p class="digital">Produto digital · Formato STL · Para fatiamento e impressão 3D</p>
+        <p class="digital">Produto digital · Formato ${product.format ?? 'STL'} · Para fatiamento e impressão 3D</p>
         <div class="detail-actions">
           <button type="button" class="button primary" data-toggle="${product.id}">Adicionar ao carrinho</button>
           <a class="button outline" href="#modelos">Voltar ao catálogo</a>
@@ -178,7 +178,7 @@ function renderRoute(moveFocus = true) {
   detail.hidden = !product;
   document.title = product
     ? product.title + ' | WehART modelagem 3D'
-    : 'WehART modelagem 3D | Coleção de Natal — Arquivos STL';
+    : 'WehART modelagem 3D | Coleção de Natal — Arquivos STL e 3MF';
   if (product) {
     renderDetail(product);
     window.scrollTo(0, 0);
@@ -255,7 +255,7 @@ checkout.addEventListener('click', () => {
   const price = quote(products.length);
   if (!price) return;
   const selection = products.length === PRODUCTS.length
-    ? ['Olá! Quero o pacote completo dos STLs da coleção de Natal da WehART modelagem 3D.']
+    ? ['Olá! Quero o pacote completo dos STLs e do modelo em 3MF da coleção de Natal da WehART modelagem 3D.']
     : [
       'Olá! Escolhi estes modelos 3D de Natal no catálogo WehART modelagem 3D:',
       '',

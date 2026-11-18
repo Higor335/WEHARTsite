@@ -26,6 +26,14 @@ const PRODUCTS = [
     photos: ['Maria e José em estilo chibi, com auréolas, ao redor da manjedoura'],
   },
   {
+    media: './assets/14',
+    id: 'conjunto-estrela-de-belem',
+    title: 'Conjunto Estrela de Belém',
+    type: 'Presépio',
+    description: 'Figuras de traços geométricos compõem uma cena de presépio com a Sagrada Família, os Reis Magos e um animal. Organize o conjunto na mesa ou no aparador.',
+    photos: ['Figuras do presépio em estilo geométrico'],
+  },
+  {
     media: './assets/05',
     id: 'boneco-de-neve-em-croche-para-arvore',
     title: 'Boneco de Neve em Crochê para Árvore de Natal',
@@ -40,6 +48,15 @@ const PRODUCTS = [
     type: 'Presépio',
     description: 'Maria ajoelhada e José com seu cajado cercam a manjedoura em uma composição escultural sobre base oval. Uma peça de presença discreta para o aparador ou a mesa.',
     photos: ['Sagrada Família monocromática sobre base oval'],
+  },
+  {
+    media: './assets/15',
+    id: 'gnomo-de-natal-em-croche',
+    title: 'Gnomo de Natal em Crochê',
+    type: 'Decoração de mesa',
+    format: '3MF',
+    description: 'O gorro caído e a barba volumosa dão personalidade ao gnomo de textura inspirada em crochê. Uma peça para compor prateleiras e cantinhos natalinos.',
+    photos: ['Gnomo com gorro vermelho e barba branca'],
   },
   {
     media: './assets/03',
@@ -58,6 +75,14 @@ const PRODUCTS = [
     photos: ['Maria, José e Bebê Jesus com rostos lisos e mantos texturizados'],
   },
   {
+    media: './assets/16',
+    id: 'guardioes-da-luz-de-natal',
+    title: 'Guardiões da Luz de Natal',
+    type: 'Decoração de mesa',
+    description: 'As figuras de gorros alongados têm recortes que aparecem iluminados na foto. Juntas, formam uma composição para a janela ou o aparador de Natal.',
+    photos: ['Figuras decorativas com recortes iluminados sobre um aparador'],
+  },
+  {
     media: './assets/04',
     id: 'boneco-de-neve-em-croche-para-mesa',
     title: 'Boneco de Neve em Crochê para Mesa',
@@ -74,6 +99,14 @@ const PRODUCTS = [
     photos: ['Presépio de formas suaves com arco e estrela'],
   },
   {
+    media: './assets/17',
+    id: 'papai-noel-em-croche',
+    title: 'Papai Noel em Crochê',
+    type: 'Decoração de mesa',
+    description: 'Barba cheia, gorro clássico e botas arredondadas recriam o Papai Noel em textura de crochê. O conjunto inclui arquivos da figura inteira e das partes separadas.',
+    photos: ['Papai Noel com textura de crochê, barba branca e botas pretas'],
+  },
+  {
     media: './assets/09',
     id: 'jesus-em-croche',
     title: 'Jesus em Crochê',
@@ -88,6 +121,14 @@ const PRODUCTS = [
     type: 'Decoração de mesa',
     description: 'O letreiro cursivo ganha companhia de uma árvore, uma estrela e um biscoito de gengibre. A composição sobre base é uma forma de dar boas-vindas na mesa da ceia.',
     photos: ['Letreiro cursivo Feliz Natal sobre uma base, com árvore, estrela e biscoito'],
+  },
+  {
+    media: './assets/19',
+    id: 'renas-natalinas-em-croche',
+    title: 'Renas Natalinas em Crochê',
+    type: 'Decoração de mesa',
+    description: 'Esta rena de galhadas largas tem textura de crochê e aparece em três cores na foto. O pacote inclui duas versões do modelo, de 5 cm e 8 cm.',
+    photos: ['Três impressões da rena em verde, branco e marrom'],
   },
   {
     media: './assets/11',
@@ -112,5 +153,13 @@ const PRODUCTS = [
     type: 'Presépio',
     description: 'O Bebê Jesus adormecido, envolto em uma manta texturizada, repousa em uma manjedoura elevada. Uma peça delicada para dar destaque ao centro do seu presépio.',
     photos: ['Bebê Jesus adormecido com manta branca em uma manjedoura elevada'],
+  },
+  {
+    media: './assets/18',
+    id: 'rena-de-natal-em-croche',
+    title: 'Rena de Natal em Crochê',
+    type: 'Decoração de mesa',
+    description: 'O nariz vermelho e o cachecol dão destaque a esta rena sentada, com galhadas arredondadas e textura de crochê. Uma figura para acompanhar outras peças na decoração da ceia.',
+    photos: ['Rena sentada com nariz vermelho, cachecol e textura de crochê'],
   },
 ];
