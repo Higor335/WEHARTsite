@@ -1,6 +1,7 @@
 'use strict';
 
 const storageKey = 'wehart-natal-cart-v1';
+const collectionPrice = Math.round(PRICING.collectionReference.total * PRODUCTS.length / PRICING.collectionReference.modelCount);
 const byId = new Map(PRODUCTS.map(product => [product.id, product]));
 const currency = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' });
 const money = cents => currency.format(cents / 100);
@@ -36,13 +37,13 @@ let selected = readCart();
 function quote(count) {
   if (count < PRICING.minimum) return null;
   if (count === PRODUCTS.length) {
-    return { label: 'Coleção Completa', total: PRICING.collection, capped: false };
+    return { label: 'Coleção Completa', total: collectionPrice, capped: false };
   }
   const subtotal = PRICING.base + (count - PRICING.minimum) * PRICING.additional;
   return {
     label: 'Pacote Personalizado',
-    total: Math.min(subtotal, PRICING.collection),
-    capped: subtotal >= PRICING.collection,
+    total: Math.min(subtotal, collectionPrice),
+    capped: subtotal >= collectionPrice,
   };
 }
 
@@ -119,11 +120,11 @@ function updateCart() {
 }
 
 function renderCatalog() {
-  const savings = PRODUCTS.length * PRICING.reference - PRICING.collection;
+  const savings = PRODUCTS.length * PRICING.reference - collectionPrice;
   const discount = Math.round(100 * savings / (PRODUCTS.length * PRICING.reference));
   find('custom-price').textContent = money(PRICING.base);
   find('custom-terms').textContent = quantity(PRICING.minimum) + ' à escolha · ' + money(PRICING.additional) + ' por modelo adicional';
-  find('full-price').textContent = money(PRICING.collection);
+  find('full-price').textContent = money(collectionPrice);
   find('full-terms').textContent = quantity(PRODUCTS.length) + ' · ' + discount + '% de economia sobre a referência de ' + money(PRICING.reference) + ' por modelo';
   find('model-count').textContent = quantity(PRODUCTS.length);
   grid.innerHTML = PRODUCTS.map((product, index) => `
@@ -134,7 +135,7 @@ function renderCatalog() {
       <div class="card-content">
         <p class="eyebrow">${product.type}</p>
         <h3>${product.title}</h3>
-        <a class="details-link" href="#modelo/${product.id}">Ver vídeo e detalhes <span aria-hidden="true">↗</span></a>
+        <a class="details-link" href="#modelo/${product.id}">${product.hasVideo === false ? 'Ver detalhes' : 'Ver vídeo e detalhes'} <span aria-hidden="true">↗</span></a>
         <button class="button outline" type="button" data-add="${product.id}">+ Adicionar ao carrinho</button>
       </div>
     </article>`).join('');
@@ -163,10 +164,10 @@ function renderDetail(product) {
           <button type="button" class="button primary" data-toggle="${product.id}">Adicionar ao carrinho</button>
           <a class="button outline" href="#modelos">Voltar ao catálogo</a>
         </div>
-        <section class="video-block" aria-labelledby="video-title">
+        ${product.hasVideo === false ? '' : `<section class="video-block" aria-labelledby="video-title">
           <h2 id="video-title">Vídeo demonstrativo</h2>
           <video src="${product.media}/demo.mp4" poster="${product.media}/capa.webp" controls muted playsinline preload="none" aria-label="Vídeo de ${product.title}"></video>
-        </section>
+        </section>`}
       </div>
     </div>`;
 }
@@ -255,7 +256,7 @@ checkout.addEventListener('click', () => {
   const price = quote(products.length);
   if (!price) return;
   const selection = products.length === PRODUCTS.length
-    ? ['Olá! Quero o pacote completo dos STLs e do modelo em 3MF da coleção de Natal da WehART modelagem 3D.']
+    ? ['Olá! Quero o pacote completo dos modelos em STL e 3MF da coleção de Natal da WehART modelagem 3D.']
     : [
       'Olá! Escolhi estes modelos 3D de Natal no catálogo WehART modelagem 3D:',
       '',
