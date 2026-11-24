@@ -3,7 +3,7 @@ const PRICING = Object.freeze({
   reference: 1290,
   base: 3490,
   additional: 500,
-  collectionReference: { modelCount: 9, total: 5990 },
+  collectionReference: { modelCount: 22, total: 7000 },
 });
 
 const WHATSAPP_NUMBER = '5567998325268';
